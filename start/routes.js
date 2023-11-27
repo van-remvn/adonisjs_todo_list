@@ -20,4 +20,6 @@ Route.group(() => {
     Route.patch('/todos/:id','TodoController.update').as("todos.update").validator("StoreTodo")
     Route.delete('/todos/:id','TodoController.destroy').as("todos.destroy")
     Route.post('/logout','AuthController.logout').as("auth.logout")
+
+    Route.get('/todos/create','TodoController.create').as("todos.create")
 }).middleware(['auth'])

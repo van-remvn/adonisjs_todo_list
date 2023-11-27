@@ -1,4 +1,6 @@
 @layout('layouts.master')
+
+
 @section('content')
   <header class="w3-container w3-teal">
     <h2 style="margin:5px">Task Management | <b>{{name}}</b>
@@ -7,14 +9,66 @@
         <input type="submit" value="Logout" class="w3-btn w3-red">
       </form>
     </h2>
-    <form method="post" action="{{route('todos.store')}}">
+    <!--  <form method="post" action="{{route('todos.store')}}">
       {{ csrfField() }}
       <input type="text" name="title" placeholder="Title..." value="{{old('title')}}" class="w3-input">
-      <input type="submit" class="w3-block w3-btn w3-green" value="Ekle">
-    </form>
+      <input type="submit" class="w3-block w3-btn w3-green" value="Create">
+    </form>  -->
   </header>
-  <div class="w3-container"> 
-    <ul class="w3-ul"> 
+  
+  <div class="w3-container">
+
+    <div class="col-md-10 mx-auto">
+      <div class="row">
+        <div class="col-md-10 mx-auto" style="margin-top:30px;">
+          <a href="{{ route('todos.create') }}" class="btn btn-primary">Create To Do</a>
+        </div>
+        <div class="col-md-10 mx-auto">
+          <hr>
+        </div>
+
+        <div class="row">
+          @if(todos == '')
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">No To Do</h5>
+                <p class="card-text">Create several todo by clicking on the <em class="text-primary">Create To Do</em> button</p>
+                <a href="{{ route('todos.create') }}" class="btn btn-primary">Create To Do</a>
+              </div>
+            </div>
+          </div>
+          @else
+            @each(todo in todos)
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">{{ todo.title }}</h5>
+                  @if( todo.description !== null)
+                    <p class="card-text">{{ todo.description }}</p>
+                  @else
+                    <p class="card-text">No Description</p>
+                  @endif
+                  <p>
+                    <button class="btn btn-outline-secondary">
+                      2023/12/30
+                    </button>
+                  </p>
+                  <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
+                  <a href="{{ route('todo.delete', { id : todo.id }) }}" class="btn btn-danger mb-1 d-xs-block">Delete</a>
+                  <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="is_completed" {{ todo.completed ? 'checked' : ''}}>
+                </div>
+              </div>
+            </div>
+            @endeach
+          @endif
+        </div>
+
+      </div>
+      
+    </div>
+
+    <!--  <ul class="w3-ul"> 
       @each(todo in todos)
         <li class="{{todo.completed ? 'w3-leftbar w3-light-gray':'' }}">
           <a href="{{route('todos.edit',{id:todo.id})}}">
@@ -26,6 +80,6 @@
           </form>
         </li>
       @endeach
-    </ul>
+    </ul>  -->
   </div> 
 @endsection

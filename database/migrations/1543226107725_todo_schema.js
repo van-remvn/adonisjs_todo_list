@@ -8,6 +8,7 @@ class TodoSchema extends Schema {
     this.create('todos', (table) => {
       table.increments()
       table.string("title").notNullable()
+      table.string('description').nullable()
       table.boolean("completed").default(false)
       table.integer("user_id")
       table.timestamps()

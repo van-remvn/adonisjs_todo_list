@@ -16,13 +16,14 @@ class TodoController {
     })
   }
   async create ({ request, response, view }) {
+    return view.render("create")
   }
   async store ({ request, session, response,auth }) {
     const todo = await Todo.create({
       title:request.input("title"),
       user_id:auth.user.id
     })
-    session.flash({successMessage:"Eklendi"})
+    session.flash({successMessage:"Task was created successfully!"})
     return response.redirect("back")
   }
   async show ({ params, request, response, view }) {
