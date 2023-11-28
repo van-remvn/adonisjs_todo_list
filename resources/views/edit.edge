@@ -4,12 +4,32 @@
 @endsection
 @section('content')
     <header class="w3-container w3-teal">
-        <h2 style="margin:5px">Yapılacaklar Listem | <b>{{name}}</b></h2>
-        <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
-            {{ csrfField() }}
-            <input type="text" name="title" placeholder="Title..." value="{{old('title',todo.title)}}" class="w3-input">
-            <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed"><label>Tamamlandı</label>
-            <input type="submit" class="w3-block w3-btn w3-green" value="Update">
-        </form>
+        <h2 style="margin:5px">Task Management | <b>{{name}}</b></h2>
     </header>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-md-10 mx-auto">
+            <h2>Edit To Do</h2>
+            <form action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}" method="POST">
+              {{ csrfField() }}
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input class="form-control" type="text" name="title" placeholder="Title" value="{{ todo.title }}" required>
+              </div>
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" name="description" cols="30" rows="10" placeholder="Description">{{ todo.description }}</textarea>
+              </div>
+              
+              <div class="form-group">
+                <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed"><label>Completed?</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <a class="btn btn-secondary" href="{{ route('todos.index') }}">Cancel</a>
+            </form>
+          </div>
+        </div>
+      </div>
+
 @endsection

@@ -15,16 +15,20 @@ class TodoController {
       name:auth.user.username
     })
   }
-  async create ({ request, response, view }) {
-    return view.render("create")
+  async create ({ request, response, view, auth }) {
+    return view.render("create", {
+      name:auth.user.username
+    })
   }
   async store ({ request, session, response,auth }) {
     const todo = await Todo.create({
       title:request.input("title"),
+      description:request.input("description"),
       user_id:auth.user.id
     })
     session.flash({successMessage:"Task was created successfully!"})
-    return response.redirect("back")
+    // return response.redirect("back")
+    return response.route("todos.index")
   }
   async show ({ params, request, response, view }) {
   }
@@ -41,9 +45,10 @@ class TodoController {
       return response.route("todos.index")
     }
     todo.title=request.input('title')
+    todo.description=request.input("description"),
     todo.completed=request.input("completed")==='on' ? true : false
     await todo.save()
-    session.flash({successMessage:"Güncellendi"})
+    session.flash({successMessage:"Update successfully!"})
     return response.route('todos.index')
   }
   async destroy ({ params, auth, response,session }) {

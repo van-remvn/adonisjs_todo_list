@@ -54,9 +54,21 @@
                       2023/12/30
                     </button>
                   </p>
-                  <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
-                  <a href="{{ route('todo.delete', { id : todo.id }) }}" class="btn btn-danger mb-1 d-xs-block">Delete</a>
-                  <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="is_completed" {{ todo.completed ? 'checked' : ''}}>
+                  <div style="display: inline-block;">
+                    <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
+                    <!--  <a href="{{ route('todo.delete', { id : todo.id }) }}" class="btn btn-danger mb-1 d-xs-block">Delete</a>  -->
+                    <form method="post" action="{{route('todos.destroy',{id:todo.id})+ '?_method=DELETE'}}">
+                      {{ csrfField() }} 
+                      <input type="submit" class="btn btn-danger mb-1 d-xs-block" value="Delete" onclick="return confirm('Are You Sure You Want to Delete?')">
+                    </form>
+
+                    <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
+                      {{ csrfField() }} 
+                      <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="completed" {{ todo.completed ? 'checked' : ''}} onclick="return confirm('Are You Sure You Want to Update?')">
+                    </form>
+                    <!--  <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="is_completed" {{ todo.completed ? 'checked' : ''}}>  -->
+                  </div>
+                  
                 </div>
               </div>
             </div>
