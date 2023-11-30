@@ -7,4 +7,9 @@ hooks.after.providersBooted(()=>{
     Exception.handle('HttpException',async(error,{response,session})=>{
         return response.redirect("/")
     })
+
+    const View = use('View')
+    const momentHelper = require('./momentHelper')
+
+    View.global('formatDate', momentHelper.formatDate)
 })

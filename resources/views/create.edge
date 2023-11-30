@@ -25,11 +25,10 @@
                 <textarea class="form-control" name="description" cols="30" rows="10" placeholder="Description"></textarea>
               </div>
 
-              <div class="form_group">
-                <label for="due_date">Due date:</label>
-                <input class="form-control" type="date" id="due_date" name="due_date">
+              <div class="form-group">
+                <label for="datetime">Due date:</label>
+                <input class="form-control" type="datetime-local" id="datetime" name="due_date">
               </div>
-
 
               <button type="submit" class="btn btn-primary">Submit</button>
               <a class="btn btn-secondary" href="{{ route('todos.index') }}">Cancel</a>
