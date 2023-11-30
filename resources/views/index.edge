@@ -49,11 +49,12 @@
                   @else
                     <p class="card-text">No Description</p>
                   @endif
-                  <p>
-                    <button class="btn btn-outline-secondary">
-                      2023/12/30
-                    </button>
-                  </p>
+
+                  @if( todo.due_date !== null)
+                  <p class="card-text">{{ todo.due_date }}</p>
+                  @else
+                    <p class="card-text">No Due date</p>
+                  @endif
                   <div style="display: inline-block;">
                     <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
                     <!--  <a href="{{ route('todo.delete', { id : todo.id }) }}" class="btn btn-danger mb-1 d-xs-block">Delete</a>  -->
@@ -64,9 +65,8 @@
 
                     <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
                       {{ csrfField() }} 
-                      <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="completed" {{ todo.completed ? 'checked' : ''}} onclick="return confirm('Are You Sure You Want to Update?')">
+                      <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed" onclick="return confirm('Are You Sure You Want to Update?')"><label>Completed</label>
                     </form>
-                    <!--  <input style="float: right; margin-top: 15px;" id="myCheckbox" type="checkbox" name="is_completed" {{ todo.completed ? 'checked' : ''}}>  -->
                   </div>
                   
                 </div>

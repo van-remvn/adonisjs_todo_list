@@ -9,12 +9,12 @@ class Auth {
   }
   get messages () {
     return { 
-      "email.required"  :"Email Alanı Gerekli",
-      "email.email"     :"Email Formatında Olmalı",
-      "email.unique"    :"Email Zaten Kayıtlı",
-      "password.required"  :"Şifre Alanı Gerekli",
-      "password.min"       :"Şifre En Az 5 Karakter Uzunluğunda Olmalıdır",
-      "password.confirmed" :"Şifre Alanları Birbirileri İle Aynı Olmalıdır",
+      "email.required"  :"Email is required!",
+      "email.email"     :"Must Be in Email Format",
+      "email.unique"    :"Email Already Registered",
+      "password.required"  :"Password is required",
+      "password.min"       :"Password is must be more than 5 characters!",
+      "password.confirmed" :"Password Confirm Must Be the Same as Password!",
     }
   }
 }

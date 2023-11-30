@@ -8,8 +8,8 @@ class StoreTodo {
   }
   get messages () {
     return {
-      "title.required":"Alan Gerekli",
-      "title.min":"Çok Kısa",
+      "title.required":"Title is required!",
+      "title.min":"Title is very short!",
     }
   }
 }

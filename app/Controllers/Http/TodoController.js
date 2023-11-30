@@ -24,6 +24,7 @@ class TodoController {
     const todo = await Todo.create({
       title:request.input("title"),
       description:request.input("description"),
+      due_date:request.input("due_date"),
       user_id:auth.user.id
     })
     session.flash({successMessage:"Task was created successfully!"})
@@ -46,10 +47,12 @@ class TodoController {
     }
     todo.title=request.input('title')
     todo.description=request.input("description"),
+    todo.due_date=request.input("due_date"),
     todo.completed=request.input("completed")==='on' ? true : false
     await todo.save()
     session.flash({successMessage:"Update successfully!"})
     return response.route('todos.index')
+    
   }
   async destroy ({ params, auth, response,session }) {
     const todo = await Todo.findOrFail(params.id)
@@ -57,7 +60,7 @@ class TodoController {
       return response.route("todos.index")
     }
     await todo.delete()
-    session.flash({successMessage:"Silindi"})
+    session.flash({successMessage:"Delete successfully!"})
     return response.redirect('back')
   }
 }
