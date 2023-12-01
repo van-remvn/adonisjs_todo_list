@@ -6,10 +6,18 @@
     {{ style('w3.css') }}
 
 
+    <!--  Font awesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-ezr7dmf4gA+6LJSLfI+SN3bReeF69aVakY+8+QAzihnxZLMpfrZDeXBRuOcTt+Ll" crossorigin="anonymous">
+
     <!-- Bootstrap CSS -->
     <link rel="shortcut icon" href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fblog.adonisjs.com%2F&psig=AOvVaw1sk7YDwZeHqjFJsi3yQ_KL&ust=1580053403944000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIiF_eCLn-cCFQAAAAAdAAAAABAI">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <style>
+      .inline-block-container {
+          white-space: nowrap;
+      }
+    </style>
 
   </head>
   <body>
@@ -19,11 +27,15 @@
     @if(hasErrorFor('title'))
       <div class="w3-container w3-panel w3-red"><p>{{getErrorFor('title')}}</p></div> 
     @endif
+    @if(hasErrorFor('due_date'))
+      <div class="w3-container w3-panel w3-red"><p>{{getErrorFor('due_date')}}</p></div> 
+    @endif
     @!section('content')
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    @!section('css')
   </body>
 </html>

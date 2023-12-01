@@ -22,4 +22,5 @@ Route.group(() => {
     Route.post('/logout','AuthController.logout').as("auth.logout")
 
     Route.get('/todos/create','TodoController.create').as("todos.create")
+    Route.patch('/todos/update_complete/:id/:completeStatus','TodoController.updateComplete').as("todos.update_complete")
 }).middleware(['auth'])

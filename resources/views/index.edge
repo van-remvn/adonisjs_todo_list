@@ -1,6 +1,7 @@
 @layout('layouts.master')
 
 
+
 @section('content')
   <header class="w3-container w3-teal">
     <h2 style="margin:5px">Task Management | <b>{{name}}</b>
@@ -51,23 +52,25 @@
                   @endif
 
                   @if( todo.due_date !== null)
-                  <p class="card-text">{{ todo.due_date ? formatDate(todo.due_date, 'YYYY-MM-DD') : '' }}</p>
+                  <p class="card-text">{{ todo.due_date ? formatDate(todo.due_date, 'YYYY-MM-DD HH:mm') : '' }}</p>
                   @else
                     <p class="card-text">No Due date</p>
                   @endif
-                  <div style="display: inline-block;">
-                    <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
-                    <!--  <a href="{{ route('todo.delete', { id : todo.id }) }}" class="btn btn-danger mb-1 d-xs-block">Delete</a>  -->
-                    <form method="post" action="{{route('todos.destroy',{id:todo.id})+ '?_method=DELETE'}}">
-                      {{ csrfField() }} 
-                      <input type="submit" class="btn btn-danger mb-1 d-xs-block" value="Delete" onclick="return confirm('Are You Sure You Want to Delete?')">
-                    </form>
-
-                    <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
-                      {{ csrfField() }} 
-                      <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed" onclick="return confirm('Are You Sure You Want to Update?')"><label>Completed</label>
-                    </form>
-                  </div>
+                  <div class="inline-block-container">
+                    <div style="display: inline-block;">
+                      <a href="{{ route('todos.edit', { id : todo.id }) }}" class="btn btn-primary mb-1 d-xs-block">Edit</a>
+                      <form method="post" action="{{route('todos.destroy',{id:todo.id})+ '?_method=DELETE'}}">
+                        {{ csrfField() }} 
+                        <input type="submit" class="btn btn-danger mb-1 d-xs-block" value="Delete" onclick="return confirm('Are You Sure You Want to Delete?')">
+                      </form>
+                      
+                      <form method="post" action="{{route('todos.update',{id:todo.id})  + '?_method=PATCH'}}">
+                        {{ csrfField() }} 
+                        <input class="w3-check" type="checkbox" {{todo.completed ? 'checked' : ''}} name="completed">
+                      </form>
+                    </div>
+                </div>
+                  
                   
                 </div>
               </div>
@@ -94,4 +97,12 @@
       @endeach
     </ul>  -->
   </div> 
+@endsection
+
+@section('css')
+<script type="text/javascript">
+  function abc() {
+    alert('kjfjkfkkf');
+  }
+</script>
 @endsection

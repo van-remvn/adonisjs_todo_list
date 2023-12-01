@@ -9,7 +9,7 @@ class TodoSchema extends Schema {
       table.increments()
       table.string("title").notNullable()
       table.string('description').nullable()
-      table.dateTime('due_date').nullable()
+      table.dateTime('due_date').notNullable()
       table.boolean("completed").default(false)
       table.integer("user_id")
       table.timestamps()
